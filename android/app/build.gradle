@@ -138,6 +138,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-image-to-pdf')
+    implementation project(':react-native-image-picker')
     implementation project(':@react-native-community_cameraroll')
     implementation project(':react-native-vector-icons')
     implementation project(':@react-native-community_async-storage')

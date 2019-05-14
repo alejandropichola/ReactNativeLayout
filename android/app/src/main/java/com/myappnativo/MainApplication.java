@@ -3,6 +3,8 @@ package com.myappnativo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.anyline.RNImageToPDF.RNImageToPdfPackage;
+import com.imagepicker.ImagePickerPackage;
 import com.reactnativecommunity.cameraroll.CameraRollPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
@@ -27,6 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNImageToPdfPackage(),
+            new ImagePickerPackage(),
             new CameraRollPackage(),
             new VectorIconsPackage(),
             new AsyncStoragePackage(),
