@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "164289057221",
+    "firebase_url": "https://myapp-b0167.firebaseio.com",
+    "project_id": "myapp-b0167",
+    "storage_bucket": "myapp-b0167.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164289057221:android:c44c14b0a841c64d",
+        "android_client_info": {
+          "package_name": "com.myappnativo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164289057221-a875s85eh3h0s16p0jf6ojog4c6ae42b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdTaUfmIvKk3C8DKyTOhKvgqwAYiF5LGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164289057221-a875s85eh3h0s16p0jf6ojog4c6ae42b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

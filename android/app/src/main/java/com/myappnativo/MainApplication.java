@@ -3,7 +3,8 @@ package com.myappnativo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.anyline.RNImageToPDF.RNImageToPdfPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.reactnativecommunity.cameraroll.CameraRollPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -29,12 +30,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNImageToPdfPackage(),
+            new RNFirebasePackage(),
             new ImagePickerPackage(),
             new CameraRollPackage(),
             new VectorIconsPackage(),
             new AsyncStoragePackage(),
-            new RNGestureHandlerPackage()
+            new RNGestureHandlerPackage(),
+            new RNFirebaseMessagingPackage()
       );
     }
 

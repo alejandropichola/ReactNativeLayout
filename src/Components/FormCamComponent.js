@@ -7,7 +7,7 @@ import { Input, Button } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { containerMargin } from '../../assets/Styles'
 import ImagePicker from 'react-native-image-picker'
-import {storage} from '../Services/FIREBASE'
+import Toast, {DURATION} from 'react-native-easy-toast'
 class FormCamComponent extends React.Component {
   constructor (props) {
     super(props)
@@ -54,10 +54,31 @@ class FormCamComponent extends React.Component {
   saveImage = () => {
     if (this.state.image != null) {
       const data = this.state.image.data
-      storage.ref(`Files/`)
-      
-    }
+
+
+      const json = JSON.stringify({
+        data: {
+        type: 'upload',
+        attributes: {
+          bodyImage: data,
+          mimeType: 'data:image/jpeg;base64'
+        }}
+      })
+      fetch('http://192.168.86.47:3000/upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: json
+    })
+    .then(response => {
+      this.refs.toast.show('hello world!')
+    })
+    .catch(err => {
+      console.error(err)
+    })
   }
+}
   getImageLibrary = () => {
     const options = {
       title: 'Seleccionar imagen',
@@ -76,6 +97,8 @@ class FormCamComponent extends React.Component {
     return (
       <KeyboardAvoidingView style={containerMargin} behavior='position'
                             keyboardVerticalOffset={-25}>
+                            
+                            <Toast ref="toast"/>
                             <Ionicons name='md-images' size={35} onPress={this.getImageLibrary}/>
         {image && image.data ? <Image source={{ uri: 'data:image/jpeg;base64,' + image.data }} style={{ width: 200, height: 200 }}/> : null}
         <Button title='Subir' onPress={this.saveImage}></Button>
