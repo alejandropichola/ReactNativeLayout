@@ -6,12 +6,13 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from 'react-navigation'
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeComponent from '../Components/HomeComponent'
 import LoginComponent from '../Components/LoginComponent'
 import ForgotPasswordComponent from '../Components/ForgotPasswordComponent'
 import FormCamComponent from '../Components/FormCamComponent'
 import { isSignedIn, onSignOut } from '../Services/SESSION'
+import OfflineNotice from '../Components/OfflineNotice'
 
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
@@ -28,10 +29,13 @@ class NavigationDrawerStructure extends React.Component {
 
   render () {
     return (
-      <View style={style.container}>
-        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-          <Ionicons name='md-menu' size={35} color='white'/>
-        </TouchableOpacity>
+      <View>
+        <OfflineNotice/>
+        <View style={style.container}>
+          <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
+            <Ionicons name='md-menu' size={35} color='white'/>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

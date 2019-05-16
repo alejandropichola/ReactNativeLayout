@@ -9,6 +9,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.4.0",
     "@react-native-community/cameraroll": "^1.0.5",
+    "@react-native-community/netinfo": "^2.0.10",
     "firebase": "^6.0.2",
     "react": "16.8.3",
     "react-native": "0.59.8",

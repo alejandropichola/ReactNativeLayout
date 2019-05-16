@@ -3,8 +3,10 @@ package com.myappnativo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage; // <-- Add this line
 import com.imagepicker.ImagePickerPackage;
 import com.reactnativecommunity.cameraroll.CameraRollPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -30,13 +32,15 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new NetInfoPackage(),
             new RNFirebasePackage(),
             new ImagePickerPackage(),
             new CameraRollPackage(),
             new VectorIconsPackage(),
             new AsyncStoragePackage(),
             new RNGestureHandlerPackage(),
-            new RNFirebaseMessagingPackage()
+            new RNFirebaseMessagingPackage(),
+            new RNFirebaseNotificationsPackage()
       );
     }
 
