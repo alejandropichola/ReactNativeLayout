@@ -105,7 +105,7 @@ class LoginComponent extends React.Component {
       <KeyboardAvoidingView
         style={container}
         behavior='position'
-        keyboardVerticalOffset={-25}>
+        keyboardVerticalOffset={-250}>
         { this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : <View style={containerMargin}>
           <Text style={titleOne}>Iniciar sesión</Text>
           <InputTextComponent label='Usuario'

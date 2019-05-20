@@ -4,7 +4,7 @@ import {
   KeyboardAvoidingView, PermissionsAndroid, Platform
 } from 'react-native'
 import { Input, Button } from 'react-native-elements'
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { containerMargin } from '../../assets/Styles'
 import ImagePicker from 'react-native-image-picker'
 import Toast, {DURATION} from 'react-native-easy-toast'
@@ -88,16 +88,16 @@ class FormCamComponent extends React.Component {
     }
     ImagePicker.launchImageLibrary(options, (response) => {
       this.setState({image: response})
-    }) 
+    })
   }
-  
+
 
   render () {
     let { image } = this.state
     return (
       <KeyboardAvoidingView style={containerMargin} behavior='position'
                             keyboardVerticalOffset={-25}>
-                            
+
                             <Toast ref="toast"/>
                             <Ionicons name='md-images' size={35} onPress={this.getImageLibrary}/>
         {image && image.data ? <Image source={{ uri: 'data:image/jpeg;base64,' + image.data }} style={{ width: 200, height: 200 }}/> : null}

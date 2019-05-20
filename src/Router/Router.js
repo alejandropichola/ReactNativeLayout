@@ -11,6 +11,7 @@ import HomeComponent from '../Components/HomeComponent'
 import LoginComponent from '../Components/LoginComponent'
 import ForgotPasswordComponent from '../Components/ForgotPasswordComponent'
 import FormCamComponent from '../Components/FormCamComponent'
+import UsersComponent from '../Components/UsersComponent'
 import { isSignedIn, onSignOut } from '../Services/SESSION'
 import OfflineNotice from '../Components/OfflineNotice'
 
@@ -69,6 +70,20 @@ const OptionCamera = createStackNavigator({
   }
 })
 
+const OptionUser = createStackNavigator({
+  Camera: {
+    screen: UsersComponent,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Usuario',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#5388d0'
+      },
+      headerTintColor: '#fff'
+    })
+  }
+})
+
 const OptionOne = createStackNavigator({
   Login: {
     screen: LoginComponent,
@@ -105,6 +120,15 @@ const DrawerNavigation = createDrawerNavigator({
       drawerLabel: 'Formulario camara',
       drawerIcon: ({ tintColor }) => (
         <Ionicons name="md-camera" size={24} style={{ color: tintColor }}/>
+      )
+    }
+  },
+  ScreenUser: {
+    screen: OptionUser,
+    navigationOptions: {
+      drawerLabel: 'Usuarios',
+      drawerIcon: ({tintColor}) => (
+        <Ionicons name='md-person'/>
       )
     }
   }
