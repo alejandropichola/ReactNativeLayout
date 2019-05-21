@@ -9,6 +9,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeComponent from '../Components/HomeComponent'
 import LoginComponent from '../Components/LoginComponent'
+import LogOut from '../Components/LogOut'
 import ForgotPasswordComponent from '../Components/ForgotPasswordComponent'
 import FormCamComponent from '../Components/FormCamComponent'
 import UsersComponent from '../Components/UsersComponent'
@@ -84,6 +85,19 @@ const OptionUser = createStackNavigator({
   }
 })
 
+const logOutOption = createStackNavigator({
+  logOut: {
+    screen: LogOut,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#5388d0'
+      },
+      headerTintColor: '#fff'
+    })
+  }
+})
+
 const OptionOne = createStackNavigator({
   Login: {
     screen: LoginComponent,
@@ -128,7 +142,16 @@ const DrawerNavigation = createDrawerNavigator({
     navigationOptions: {
       drawerLabel: 'Usuarios',
       drawerIcon: ({tintColor}) => (
-        <Ionicons name='md-person'/>
+        <Ionicons name='md-person' size={24} style={{color: tintColor}}/>
+      )
+    }
+  },
+  ScreenLogOut: {
+    screen: logOutOption,
+    navigationOptions: {
+      drawerLabel: 'Cerrar sesión',
+      drawerIcon: ({tintColor}) => (
+        <Ionicons name='md-log-out' size={24} style={{color: tintColor}}/>
       )
     }
   }
@@ -139,6 +162,7 @@ const navStack = createAppContainer(createSwitchNavigator(
   {
     App: DrawerNavigation,
     Auth: OptionOne,
+    LogOut: LogOut
   },
   {
     initialRouteName: 'Auth',
