@@ -16,7 +16,7 @@ import UsersComponent from '../Components/UsersComponent'
 import { isSignedIn, onSignOut } from '../Services/SESSION'
 import OfflineNotice from '../Components/OfflineNotice'
 import UsersItemComponent from '../Components/Users/UsersItemComponent'
-import UsersHistoryComponent from '../Users/UsersHistoryComponent'
+import UsersHistoryComponent from '../Components/Users/UsersHistoryComponent'
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
     super(props)
