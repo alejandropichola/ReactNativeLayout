@@ -15,7 +15,8 @@ import FormCamComponent from '../Components/FormCamComponent'
 import UsersComponent from '../Components/UsersComponent'
 import { isSignedIn, onSignOut } from '../Services/SESSION'
 import OfflineNotice from '../Components/OfflineNotice'
-
+import UsersItemComponent from '../Components/Users/UsersItemComponent'
+import UsersHistoryComponent from '../Users/UsersHistoryComponent'
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
     super(props)
@@ -72,8 +73,8 @@ const OptionCamera = createStackNavigator({
 })
 
 const OptionUser = createStackNavigator({
-  Camera: {
-    screen: UsersComponent,
+  User: {
+    screen: UsersHistoryComponent,
     navigationOptions: ({ navigation }) => ({
       title: 'Usuario',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
@@ -82,8 +83,17 @@ const OptionUser = createStackNavigator({
       },
       headerTintColor: '#fff'
     })
+  },
+  CreateUser: {
+    screen: UsersItemComponent,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#5388d0'
+      },
+      headerTintColor: '#fff'
+    })
   }
-})
+}, { initialRouteName: 'CreateUser' })
 
 const logOutOption = createStackNavigator({
   logOut: {
@@ -141,8 +151,8 @@ const DrawerNavigation = createDrawerNavigator({
     screen: OptionUser,
     navigationOptions: {
       drawerLabel: 'Usuarios',
-      drawerIcon: ({tintColor}) => (
-        <Ionicons name='md-person' size={24} style={{color: tintColor}}/>
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons name='md-person' size={24} style={{ color: tintColor }}/>
       )
     }
   },
@@ -150,8 +160,8 @@ const DrawerNavigation = createDrawerNavigator({
     screen: logOutOption,
     navigationOptions: {
       drawerLabel: 'Cerrar sesión',
-      drawerIcon: ({tintColor}) => (
-        <Ionicons name='md-log-out' size={24} style={{color: tintColor}}/>
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons name='md-log-out' size={24} style={{ color: tintColor }}/>
       )
     }
   }

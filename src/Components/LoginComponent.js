@@ -9,12 +9,13 @@ import {
 } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
 import { forGot, containerMargin, container, titleOne } from '../../assets/Styles'
-import {onSignIn, isSignedIn} from '../Services/SESSION'
+import { onSignIn, isSignedIn } from '../Services/SESSION'
 
 class LoginComponent extends React.Component {
   focusNextField (id) {
     this.inputs[id].focus()
   }
+
   constructor (props) {
     super(props)
     this.focusNextField = this.focusNextField.bind(this)
@@ -28,10 +29,11 @@ class LoginComponent extends React.Component {
       isLoading: true
     }
   }
-  isLogin=()=> {
+
+  isLogin = () => {
     return isSignedIn()
       .then((res) => {
-        this.setState({isLoading: false})
+        this.setState({ isLoading: false })
         if (res) {
           this.props.navigation.navigate('App')
         }
@@ -40,8 +42,9 @@ class LoginComponent extends React.Component {
         Alert.alert('error')
       })
   }
+
   componentDidMount () {
-    this.isLogin()
+    return this.isLogin()
   }
 
   passIsSet = () => {
@@ -95,8 +98,11 @@ class LoginComponent extends React.Component {
   submitForm = () => {
     Keyboard.dismiss()
     if (this.validationForm()) {
-      onSignIn()
-      this.isLogin()
+      return onSignIn()
+        .then(() => this.isLogin())
+        .catch(err => {
+          throw err
+        })
     }
   }
 
@@ -106,7 +112,7 @@ class LoginComponent extends React.Component {
         style={container}
         behavior='position'
         keyboardVerticalOffset={-250}>
-        { this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : <View style={containerMargin}>
+        {this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff"/> : <View style={containerMargin}>
           <Text style={titleOne}>Iniciar sesión</Text>
           <InputTextComponent label='Usuario'
                               placeHolder='Ingrese usuario'
