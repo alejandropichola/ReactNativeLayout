@@ -93,7 +93,7 @@ const OptionUser = createStackNavigator({
       headerTintColor: '#fff'
     })
   }
-}, { initialRouteName: 'CreateUser' })
+}, { initialRouteName: 'User' })
 
 const logOutOption = createStackNavigator({
   logOut: {

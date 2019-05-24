@@ -55,7 +55,6 @@ class FormCamComponent extends React.Component {
     }
   }
   saveImage = () => {
-    console.warn('entro a la funcion')
     if (this.state.image != null) {
       const data = this.state.image.data
 
@@ -77,6 +76,7 @@ class FormCamComponent extends React.Component {
       })
         .then(response => {
           this.refs.toast.show('Se ha subido exitosamente!')
+          this.setState({image: null})
         })
         .catch(err => {
           console.error(err)
