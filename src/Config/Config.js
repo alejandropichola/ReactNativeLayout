@@ -1,7 +1,7 @@
 const config = {
   env: 'local',
   local: {
-    apiRoot: 'http://192.168.56.1:3000'
+    apiRoot: 'http://192.168.86.47:3000'
   },
   development: {
     apiRoot: 'http://192.168.86.47:3000'
