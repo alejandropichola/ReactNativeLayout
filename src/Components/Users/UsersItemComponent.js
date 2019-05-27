@@ -40,8 +40,19 @@ export default class UsersItemComponent extends React.Component {
                      onChangeText={firstName => this.setState({ firstName })}
                      placeholder='Ingresar nombre'/>
           <HelperText type="error"
-                      visible={(this.state.firstName !== null && this.state.firstName.length <= 0)}>Nombre requerido</HelperText>
-          <Text>{this.state.firstName}</Text>
+                      visible={(this.state.firstName !== null && this.state.firstName.length <= 0)}>
+            Nombre requerido
+          </HelperText>
+          <TextInput label='Apellidos'
+                     value={this.state.lastName}
+                     theme={{ colors: { background: 'transparent' } }}
+                     error={(this.state.lastName !== null && this.state.lastName.length <= 0)}
+                     onChangeText={lastName => this.setState({ lastName })}
+                     placeholder='Ingresar nombre'/>
+          <HelperText type="error"
+                      visible={(this.state.lastName !== null && this.state.lastName.length <= 0)}>
+            Apellido requerido
+          </HelperText>
         </ScrollView>
       </View>
     )
