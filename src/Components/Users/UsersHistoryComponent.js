@@ -16,21 +16,23 @@ export default class UsersHistoryComponent extends React.Component {
       userId: null
     }
   }
-  deleteModal(id) {
+
+  deleteModal (id) {
     if (Platform.OS === 'android') {
       Alert.alert('Eliminar usuario',
         '¿Seguro que quiere eliminar a este usuario?',
         [
-          {text: 'CANCELAR', style: 'cancel'},
-          {text: 'ELIMINAR', onPress: () => this.deleteUser(id)}
+          { text: 'CANCELAR', style: 'cancel' },
+          { text: 'ELIMINAR', onPress: () => this.deleteUser(id) }
         ]
       )
     }
   }
 
-  deleteUser(id) {
+  deleteUser (id) {
     this.refs.toast.show('Se ha eliminado ' + id + ' !')
   }
+
   createUser = () => {
     this.props.navigation.navigate('CreateUser')
   }
@@ -67,42 +69,44 @@ export default class UsersHistoryComponent extends React.Component {
               }></Button>
             </Col>
           </Row>
-          <Row size={90}>
+          <Row size={90} style={{paddingTop: 35}}>
             {this.state.isLoading ? <View style={container}><ActivityIndicator size="large" color="#0000ff"/></View> :
+              <ScrollView>
+                <ScrollView horizontal={true}>
+                  <View>
+                    {items.length > 0 ?
+                      <DataTable>
+                        <DataTable.Header>
+                          <DataTable.Title>Id</DataTable.Title>
+                          <DataTable.Title style={{ width: 150 }}>Nombre</DataTable.Title>
+                          <DataTable.Title style={{ width: 150 }}>Usuario</DataTable.Title>
+                          <DataTable.Title style={{ width: 200 }}>Correo</DataTable.Title>
+                          <DataTable.Title></DataTable.Title>
+                        </DataTable.Header>
+                        {items.map(item => (
+                          <DataTable.Row key={item.id}>
+                            <DataTable.Cell>
+                              {item.id}
+                            </DataTable.Cell>
+                            <DataTable.Cell style={{ width: 150 }}>{item.name}</DataTable.Cell>
+                            <DataTable.Cell style={{ width: 150 }}>{item.username}</DataTable.Cell>
+                            <DataTable.Cell style={{ width: 200 }}>{item.email}</DataTable.Cell>
+                            <DataTable.Cell><Ionicons name='md-trash' size={25}
+                                                      onPress={() => this.deleteModal(item.id)}/></DataTable.Cell>
+                          </DataTable.Row>
+                        ))}
 
-              <ScrollView horizontal={true}>
-                <View>
-                  {items.length > 0 ?
-                    <DataTable>
-                      <DataTable.Header>
-                        <DataTable.Title>Id</DataTable.Title>
-                        <DataTable.Title>Nombre</DataTable.Title>
-                        <DataTable.Title>Nombre de usuario</DataTable.Title>
-                        <DataTable.Title>Correo</DataTable.Title>
-                        <DataTable.Title></DataTable.Title>
-                      </DataTable.Header>
-                      {items.map(item => (
-                        <DataTable.Row key={item.id}>
-                          <DataTable.Cell>
-                            {item.id}
-                          </DataTable.Cell>
-                          <DataTable.Cell style={{width: 150}}>{item.name}</DataTable.Cell>
-                          <DataTable.Cell style={{width: 150}}>{item.username}</DataTable.Cell>
-                          <DataTable.Cell style={{width: 150}}>{item.email}</DataTable.Cell>
-                          <DataTable.Cell ><Ionicons name='md-trash' size={25} onPress={() => this.deleteModal(item.id)}/></DataTable.Cell>
-                        </DataTable.Row>
-                      ))}
-
-                      <DataTable.Pagination
-                        page={1}
-                        numberOfPages={3}
-                        onPageChange={(page) => { console.log(page) }}
-                        label="1-2 of 6"
-                      />
-                    </DataTable> :
-                    <Text>No hay usuario registrados</Text>
-                  }
-                </View>
+                        <DataTable.Pagination
+                          page={1}
+                          numberOfPages={3}
+                          onPageChange={(page) => { console.log(page) }}
+                          label="1-2 of 6"
+                        />
+                      </DataTable> :
+                      <Text>No hay usuario registrados</Text>
+                    }
+                  </View>
+                </ScrollView>
               </ScrollView>
             }
           </Row>
