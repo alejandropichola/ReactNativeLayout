@@ -9,12 +9,12 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeComponent from '../Components/HomeComponent'
 import LoginComponent from '../Components/LoginComponent'
-import LogOut from '../Components/LogOut'
+import LogOutComponent from '../Components/LogOutComponent'
 import ForgotPasswordComponent from '../Components/ForgotPasswordComponent'
 import FormCamComponent from '../Components/FormCamComponent'
 import UsersComponent from '../Components/UsersComponent'
 import { isSignedIn, onSignOut } from '../Services/SESSION'
-import OfflineNotice from '../Components/OfflineNotice'
+import OfflineNoticeComponent from '../Components/OfflineNoticeComponent'
 import UsersItemComponent from '../Components/Users/UsersItemComponent'
 import UsersHistoryComponent from '../Components/Users/UsersHistoryComponent'
 class NavigationDrawerStructure extends React.Component {
@@ -33,7 +33,7 @@ class NavigationDrawerStructure extends React.Component {
   render () {
     return (
       <View>
-        <OfflineNotice/>
+        <OfflineNoticeComponent/>
         <View style={style.container}>
           <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
             <Ionicons name='md-menu' size={35} color='white'/>
@@ -97,7 +97,7 @@ const OptionUser = createStackNavigator({
 
 const logOutOption = createStackNavigator({
   logOut: {
-    screen: LogOut,
+    screen: LogOutComponent,
     navigationOptions: ({ navigation }) => ({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
@@ -172,7 +172,7 @@ const navStack = createAppContainer(createSwitchNavigator(
   {
     App: DrawerNavigation,
     Auth: OptionOne,
-    LogOut: LogOut
+    LogOut: LogOutComponent
   },
   {
     initialRouteName: 'Auth',
