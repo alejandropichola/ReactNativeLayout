@@ -1,5 +1,6 @@
 import React from 'react'
-import { Text, TextInput, View } from 'react-native'
+import { Text, View } from 'react-native'
+import {TextInput} from 'react-native-paper'
 import { inputType } from '../../../assets/Styles'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { iconLeftStyle, paddingLeftPlaceholder, paddingRightPlaceholder, iconRightStyle, errorMsg } from '../../../assets/Styles'
@@ -54,7 +55,6 @@ class InputTextComponent extends React.Component {
     return (
       <View>
         <View>
-          <Text>{this.props.label}</Text>
         </View>
         <View>
           {this.props.iconLeft && this.props.iconLeft.length > 0 ? <Ionicons style={iconLeftStyle}
@@ -62,6 +62,7 @@ class InputTextComponent extends React.Component {
                                                                              size={this.props.sizeIcon}
                                                                              color={this.props.colorIcon}/> : null}
           <TextInput placeholder={this.props.placeHolder}
+                     label={this.props.label}
                      value={this.props.value}
                      onChangeText={this.props.onChangeText}
                      autocorrect={false}
@@ -71,6 +72,8 @@ class InputTextComponent extends React.Component {
                        this.props.iconLeft && this.props.iconLeft.length > 0 ? paddingLeftPlaceholder : null,
                        this.props.iconRight && this.props.iconRight.length > 0 ? paddingRightPlaceholder : null
                      ]}
+                     theme={{colors: {background: 'transparent', text: '#fff', placeholder: '#e5e5e5', primary: '#e5e5e5'}}}
+                     underlineColor='#fff'
                      secureTextEntry={this.state.secureInput}
                      onFocus={() => this.onFocus()}
                      onBlur={() => this.onBlur()}
@@ -78,6 +81,7 @@ class InputTextComponent extends React.Component {
                      returnKeyType = { this.props.returnKey }
                      onSubmitEditing={this.props.submit}
                      blurOnSubmit={this.props.blurSubmit}
+                     error={(this.props.MessageError && this.props.MessageError.length > 0)}
           />
           {this.props.iconRight && this.props.iconRight.length > 0 ? <Ionicons onPress={this.isSecure}
                                                                                style={iconRightStyle}

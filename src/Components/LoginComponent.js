@@ -5,10 +5,12 @@ import {
   View,
   Keyboard,
   KeyboardAvoidingView, Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  ImageBackground
 } from 'react-native'
 import InputTextComponent from './Common/InputTextComponent'
-import { forGot, containerMargin, container, titleOne } from '../../assets/Styles'
+import { forGot, container, titleOne } from '../../assets/Styles'
+import {containerLogin} from '../../assets/Login'
 import { onSignIn, isSignedIn } from '../Services/SESSION'
 
 class LoginComponent extends React.Component {
@@ -111,8 +113,12 @@ class LoginComponent extends React.Component {
       <KeyboardAvoidingView
         style={container}
         behavior='position'
-        keyboardVerticalOffset={-250}>
-        {this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff"/> : <View style={containerMargin}>
+        keyboardVerticalOffset={-400}>
+        {this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff"/> :
+          <ImageBackground source={require('../../assets/images/home-bkg1-tab.jpg')}
+                           imageStyle={{resizeMode: 'cover'}}
+                           style={{width: '100%', height: '100%'}}>
+          <View style={containerLogin}>
           <Text style={titleOne}>Iniciar sesión</Text>
           <InputTextComponent label='Usuario'
                               placeHolder='Ingrese usuario'
@@ -145,9 +151,9 @@ class LoginComponent extends React.Component {
           <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}
                   disabled={this.state.buttonSubmit}/>
           <Text style={forGot} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
-            Recuperar contraseña?
+            Recuperar contraseña
           </Text>
-        </View>}
+        </View></ImageBackground>}
       </KeyboardAvoidingView>
     )
   }

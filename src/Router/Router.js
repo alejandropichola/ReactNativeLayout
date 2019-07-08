@@ -113,9 +113,10 @@ const OptionOne = createStackNavigator({
     screen: LoginComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        display: 'none'
       },
-      headerTintColor: '#fff'
+      headerTintColor: 'transparent'
     })
   },
   ForgotPassword: {

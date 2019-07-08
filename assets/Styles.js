@@ -17,7 +17,8 @@ export const containerMargin = {
 }
 export const titleOne = {
   textAlign: 'center',
-  fontSize: 18
+  fontSize: 18,
+  color: '#fff'
 }
 
 export const paddingLeftPlaceholder = {
@@ -40,12 +41,13 @@ export const iconRightStyle = {
 export const inputType = {
   height: 50,
   marginBottom: 6,
-  borderBottomWidth: 1,
-  borderColor: 'black'
+  // borderBottomWidth: 1,
+  // borderColor: 'black',
 }
 
 export const forGot = {
   textAlign: 'center',
   marginTop: 15,
+  color: '#fff',
   textDecorationLine: 'underline'
 }
