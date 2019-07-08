@@ -12,11 +12,12 @@ import LoginComponent from '../Components/LoginComponent'
 import LogOutComponent from '../Components/LogOutComponent'
 import ForgotPasswordComponent from '../Components/ForgotPasswordComponent'
 import FormCamComponent from '../Components/FormCamComponent'
-import UsersComponent from '../Components/UsersComponent'
 import { isSignedIn, onSignOut } from '../Services/SESSION'
 import OfflineNoticeComponent from '../Components/OfflineNoticeComponent'
 import UsersItemComponent from '../Components/Users/UsersItemComponent'
 import UsersHistoryComponent from '../Components/Users/UsersHistoryComponent'
+import ExpensesHistoryComponent from '../Components/Expenses/ExpensesHistoryComponent'
+import ExpensesCardComponent from '../Components/Expenses/ExpensesCardComponent'
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
     super(props)
@@ -95,6 +96,35 @@ const OptionUser = createStackNavigator({
   }
 }, { initialRouteName: 'User' })
 
+
+const OptionExpense = createStackNavigator({
+  history: {
+    screen: ExpensesHistoryComponent,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Gastos',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#5388d0'
+      },
+      headerTintColor: '#fff'
+    })
+  }
+}, { initialRouteName: 'history' })
+
+const OptionPromotion = createStackNavigator({
+  history: {
+    screen: ,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Gastos',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#5388d0'
+      },
+      headerTintColor: '#fff'
+    })
+  }
+}, { initialRouteName: 'history' })
+
 const logOutOption = createStackNavigator({
   logOut: {
     screen: LogOutComponent,
@@ -154,6 +184,15 @@ const DrawerNavigation = createDrawerNavigator({
       drawerLabel: 'Usuarios',
       drawerIcon: ({ tintColor }) => (
         <Ionicons name='md-person' size={24} style={{ color: tintColor }}/>
+      )
+    }
+  },
+  ScreenExpense: {
+    screen: OptionExpense,
+    navigationOptions: {
+      drawerLabel: 'Gastos',
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons name='md-document' size={24} style={{ color: tintColor }}/>
       )
     }
   },

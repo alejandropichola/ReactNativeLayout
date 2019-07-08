@@ -51,3 +51,7 @@ export const forGot = {
   color: '#fff',
   textDecorationLine: 'underline'
 }
+
+export const tableHeader = {
+
+}
