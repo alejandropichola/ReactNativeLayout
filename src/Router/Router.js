@@ -52,7 +52,7 @@ const OptionTwo = createStackNavigator({
       title: 'Inicio',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })
@@ -66,7 +66,7 @@ const OptionCamera = createStackNavigator({
       title: 'Formulario',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })
@@ -80,7 +80,7 @@ const OptionUser = createStackNavigator({
       title: 'Usuario',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })
@@ -89,7 +89,7 @@ const OptionUser = createStackNavigator({
     screen: UsersItemComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })
@@ -104,26 +104,27 @@ const OptionExpense = createStackNavigator({
       title: 'Gastos',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })
   }
 }, { initialRouteName: 'history' })
 
-const OptionPromotion = createStackNavigator({
+/* const OptionPromotion = createStackNavigator({
   history: {
     screen: ,
     navigationOptions: ({ navigation }) => ({
       title: 'Gastos',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })
   }
 }, { initialRouteName: 'history' })
+ */
 
 const logOutOption = createStackNavigator({
   logOut: {
@@ -131,7 +132,7 @@ const logOutOption = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })
@@ -153,7 +154,7 @@ const OptionOne = createStackNavigator({
     screen: ForgotPasswordComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#5388d0'
+        backgroundColor: '#27b185'
       },
       headerTintColor: '#fff'
     })

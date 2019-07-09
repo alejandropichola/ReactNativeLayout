@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { ListItem } from 'react-native-elements'
-import { Grid, Col, Row } from 'react-native-easy-grid'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class ExpensesCardComponent extends React.Component {
   constructor (props) {
@@ -14,8 +14,8 @@ export default class ExpensesCardComponent extends React.Component {
   getOptions () {
     this.setState({
       options: [
-        { id: 1, name: 'Promociones abiertas' },
-        { id: 2, name: 'Avance de cumplimiento sobre objetivo de ventas' }
+        { id: 1, name: 'Por Promociones' },
+        { id: 2, name: 'Por Area Comercial' }
       ]
     })
   }
@@ -23,15 +23,24 @@ export default class ExpensesCardComponent extends React.Component {
   componentDidMount () {
     return this.getOptions()
   }
-  keyExtractor = (item, index) => index.toString()
-
-  renderItem=({item}) => (
-    <ListItem title={item.name}/>
-  )
+  optionRoute(route) {
+    console.warn(route)
+  }
   render () {
+    const optionItems = this.state.options
     return (
       <View>
-        <FlatList KeyExtractor={this.keyExtractor} data={options} renderItem={this.renderItem}/>
+        {
+          optionItems.map(item => (
+            <ListItem key={item.id}
+                      title={item.name}
+                      bottomDivider={true}
+                      rightIcon={
+                        <Ionicons name={'md-arrow-dropright'} size={30}/>
+                      }
+                      onPress={() => this.optionRoute(item.id)}/>
+          ))
+        }
       </View>
     )
   }
