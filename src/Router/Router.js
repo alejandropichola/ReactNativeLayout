@@ -20,6 +20,9 @@ import ExpensesHistoryComponent from '../Components/Expenses/ExpensesHistoryComp
 import ExpensesCardComponent from '../Components/Expenses/ExpensesCardComponent'
 import ExpensesItemComponent from '../Components/Expenses/ExpensesItemComponent'
 import ExpensesItem2Component from '../Components/Expenses/ExpensesItem2Component'
+import ExpensesItem3Component from '../Components/Expenses/ExpensesItem3Component'
+import ExpensesItem4Component from '../Components/Expenses/ExpensesItem4Component'
+import ExpensesItemCamComponent from '../Components/Expenses/ExpensesItemCamComponent'
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
     super(props)
@@ -111,7 +114,6 @@ const OptionExpense = createStackNavigator({
     })
   },
   create: {
-    title: 'item1',
     screen: ExpensesItemComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
@@ -121,8 +123,34 @@ const OptionExpense = createStackNavigator({
     })
   },
   createItem2: {
-    title: 'item2',
     screen: ExpensesItem2Component,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#27b185'
+      },
+      headerTintColor: '#fff'
+    })
+  },
+  createItem3: {
+    screen: ExpensesItem3Component,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#27b185'
+      },
+      headerTintColor: '#fff'
+    })
+  },
+  createItem4: {
+    screen: ExpensesItem4Component,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#27b185'
+      },
+      headerTintColor: '#fff'
+    })
+  },
+  createItemCam: {
+    screen: ExpensesItemCamComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#27b185'

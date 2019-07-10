@@ -2,8 +2,6 @@ rootProject.name = 'myAppNativo'
 
 include ':react-native-image-crop-picker'
 project(':react-native-image-crop-picker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-crop-picker/android')
-include ':react-native-image-to-pdf'
-project(':react-native-image-to-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-to-pdf/android')
 include ':@react-native-community_netinfo'
 project(':@react-native-community_netinfo').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-community/netinfo/android')
 include ':react-native-firebase'
