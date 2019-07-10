@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, ScrollView, ActivityIndicator, Alert, AlertIos, Platform } from 'react-native'
-import { Button, Text } from 'react-native-elements'
+import { Button, ListItem, Text } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Row, Col, Grid } from 'react-native-easy-grid'
 import { container, table } from '../../../assets/Styles'
@@ -80,8 +80,12 @@ export default class ExpensesHistoryComponent extends React.Component {
     return this.getExpenses()
   }
 
-  createExpense = () => {}
-
+  createExpense = () => {
+    this.props.navigation.navigate('create')
+  }
+  expensesAction(item) {
+    console.warn(item)
+  }
   render () {
     const items = this.state.expenses
     return (
@@ -100,44 +104,18 @@ export default class ExpensesHistoryComponent extends React.Component {
           </Row>
           <Row size={90} style={{ paddingTop: 35 }}>
             {this.state.isLoading ? <View style={container}><ActivityIndicator size="large" color="#0000ff"/></View> :
-              <ScrollView>
-                {items.length > 0 ?
-                  <ScrollView horizontal={true} style={{ borderWidth: 1 }}>
-                    <Col size={100}>
-                      <View>
-                        <Row style={{ borderBottomWidth: 1 }}>
-                          <Col style={{ width: 150 }}><Text style={{ fontWeight: 'bold' }}>Promoción</Text></Col>
-                          <Col style={{ width: 150 }}><Text style={{ fontWeight: 'bold' }}>Línea</Text></Col>
-                          <Col style={{ width: 150 }}><Text style={{ fontWeight: 'bold' }}>Fecha</Text></Col>
-                          <Col style={{ width: 150 }}><Text style={{ fontWeight: 'bold' }}>Promotor</Text></Col>
-                          <Col style={{ width: 120 }}><Text style={{ fontWeight: 'bold' }}>Monto</Text></Col>
-                          <Col style={{ width: 120 }}><Text style={{ fontWeight: 'bold' }}>Estado</Text></Col>
-                          <Col style={{ width: 100 }}><Text> </Text></Col>
-                        </Row>
-                      </View>
-                      <View>
-                        {items.map(item => (
-                          <Row key={item.id}>
-                            <Col style={{ width: 150 }}><Text>{item.promotion}</Text></Col>
-                            <Col style={{ width: 150 }}><Text>{item.line}</Text></Col>
-                            <Col style={{ width: 150 }}><Text>{item.date}</Text></Col>
-                            <Col style={{ width: 150 }}><Text>{item.promoter}</Text></Col>
-                            <Col style={{ width: 120 }}><Text>{item.amount}</Text></Col>
-                            <Col style={{ width: 120 }}><Text>{item.state}</Text></Col>
-                            <Col style={{ width: 100 }}>
-                              <Button onPress={this.createExpense}
-                                      buttonStyle={{ width: 50, backgroundColor: '#F7DC6F' }} icon={
-                                <Ionicons name='md-information' size={30}/>
-                              }></Button>
-                            </Col>
-                          </Row>
-                        ))}
-                      </View>
-                    </Col>
-                  </ScrollView>
-                  : <Text>No hay gastos registrados</Text>
-                }
-              </ScrollView>
+              <Col>
+                {items.map(item => (
+                <ListItem key={item.id}
+                          title={item.promotion}
+                          subtitle={item.date}
+                          bottomDivider={true}
+                          rightIcon={
+                            <Ionicons name={'md-arrow-dropright'} size={30}/>
+                          }
+                          onPress={() => this.expensesAction(item.id)}/>
+                ))}
+              </Col>
             }
           </Row>
         </Col>

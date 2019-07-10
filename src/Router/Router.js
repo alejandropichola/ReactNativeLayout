@@ -18,6 +18,8 @@ import UsersItemComponent from '../Components/Users/UsersItemComponent'
 import UsersHistoryComponent from '../Components/Users/UsersHistoryComponent'
 import ExpensesHistoryComponent from '../Components/Expenses/ExpensesHistoryComponent'
 import ExpensesCardComponent from '../Components/Expenses/ExpensesCardComponent'
+import ExpensesItemComponent from '../Components/Expenses/ExpensesItemComponent'
+import ExpensesItem2Component from '../Components/Expenses/ExpensesItem2Component'
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
     super(props)
@@ -96,13 +98,32 @@ const OptionUser = createStackNavigator({
   }
 }, { initialRouteName: 'User' })
 
-
 const OptionExpense = createStackNavigator({
   history: {
     screen: ExpensesHistoryComponent,
     navigationOptions: ({ navigation }) => ({
       title: 'Gastos',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#27b185'
+      },
+      headerTintColor: '#fff'
+    })
+  },
+  create: {
+    title: 'item1',
+    screen: ExpensesItemComponent,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#27b185'
+      },
+      headerTintColor: '#fff'
+    })
+  },
+  createItem2: {
+    title: 'item2',
+    screen: ExpensesItem2Component,
+    navigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#27b185'
       },

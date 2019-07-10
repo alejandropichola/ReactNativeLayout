@@ -3,7 +3,6 @@ import { View, ScrollView } from 'react-native'
 import { Text } from 'react-native-elements'
 import { HelperText, TextInput } from 'react-native-paper'
 import { containerMargin } from '../../../assets/Styles'
-
 export default class UsersItemComponent extends React.Component {
   constructor (props) {
     super(props)

@@ -55,3 +55,28 @@ export const forGot = {
 export const tableHeader = {
 
 }
+
+export const inputIOS ={
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  }
+ export const inputAndroid = {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'eggplant',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  }
+export const select = {
+  borderBottomWidth: 1,
+  borderColor: '#27b185'
+}
