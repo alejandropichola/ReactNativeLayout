@@ -72,7 +72,7 @@ class InputTextComponent extends React.Component {
                        this.props.iconLeft && this.props.iconLeft.length > 0 ? paddingLeftPlaceholder : null,
                        this.props.iconRight && this.props.iconRight.length > 0 ? paddingRightPlaceholder : null
                      ]}
-                     theme={{colors: {background: 'transparent', text: '#fff', placeholder: '#e5e5e5', primary: '#e5e5e5'}}}
+                     theme={{colors: {background: 'transparent', text: '#fff', placeholder: '#e5e5e5'}}}
                      underlineColor='#fff'
                      secureTextEntry={this.state.secureInput}
                      onFocus={() => this.onFocus()}

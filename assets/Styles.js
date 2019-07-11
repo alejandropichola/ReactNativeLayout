@@ -80,3 +80,13 @@ export const select = {
   borderBottomWidth: 1,
   borderColor: '#27b185'
 }
+
+export const heightInput = {
+  margin: 20
+}
+
+export const widthInput = {
+  width: '97%'
+}
+
+export const primary = '#0189bd'

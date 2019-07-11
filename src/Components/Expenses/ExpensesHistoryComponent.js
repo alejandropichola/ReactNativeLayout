@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Row, Col, Grid } from 'react-native-easy-grid'
 import { container, table } from '../../../assets/Styles'
 import Toast, { DURATION } from 'react-native-easy-toast'
+import ListDetailComponent from '../Common/ListDetailComponent'
 
 export default class ExpensesHistoryComponent extends React.Component {
   constructor (props) {
@@ -36,40 +37,103 @@ export default class ExpensesHistoryComponent extends React.Component {
     this.setState({
       expenses: [
         {
-          id: 1,
-          promotion: 'Promoción 1',
-          line: 'Línea 1',
-          date: '02-02-2019',
-          promoter: 'David Moral',
-          amount: 'GTQ 2000.00',
-          state: 'Pendiente'
+          date: '11-07-2019',
+          data: [
+            {
+              id: 1,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            },
+            {
+              id: 2,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            },
+            {
+              id: 3,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            },
+            {
+              id: 4,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            }
+          ]
         },
         {
-          id: 2,
-          promotion: 'Promoción 1',
-          line: 'Línea 1',
-          date: '02-02-2019',
-          promoter: 'David Moral',
-          amount: 'GTQ 2000.00',
-          state: 'Pendiente'
+          date: '10-07-2019',
+          data: [
+            {
+              id: 1,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            },
+            {
+              id: 2,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            },
+            {
+              id: 3,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            },
+            {
+              id: 4,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente']
+            }
+          ]
         },
         {
-          id: 3,
-          promotion: 'Promoción 1',
-          line: 'Línea 1',
-          date: '02-02-2019',
-          promoter: 'David Moral',
-          amount: 'GTQ 2000.00',
-          state: 'Pendiente'
-        },
-        {
-          id: 4,
-          promotion: 'Promoción 1',
-          line: 'Línea 1',
-          date: '02-02-2019',
-          promoter: 'David Moral',
-          amount: 'GTQ 2000.00',
-          state: 'Pendiente'
+          date: '09-07-2019',
+          data: [
+            {
+              id: 1,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente'],
+            },
+            {
+              id: 2,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente'],
+            },
+            {
+              id: 3,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente'],
+            },
+            {
+              id: 4,
+              promotion: 'Promoción 1',
+              provider: 'Mega',
+              detailHeader: ['Monto', 'Estado'],
+              detailBody: ['GTQ 2000.00', 'Pendiente'],
+            }
+          ]
         }
       ]
     })
@@ -83,11 +147,14 @@ export default class ExpensesHistoryComponent extends React.Component {
   createExpense = () => {
     this.props.navigation.navigate('create')
   }
-  expensesAction(item) {
+
+  expensesAction (item) {
     console.warn(item)
   }
+
   render () {
     const items = this.state.expenses
+    let itemObject = []
     return (
       <Grid style={{ paddingTop: 5, paddingLeft: 5, paddingRight: 5 }}>
         <Toast ref="toast"/>
@@ -105,16 +172,23 @@ export default class ExpensesHistoryComponent extends React.Component {
           <Row size={90} style={{ paddingTop: 35 }}>
             {this.state.isLoading ? <View style={container}><ActivityIndicator size="large" color="#0000ff"/></View> :
               <Col>
-                {items.map(item => (
-                <ListItem key={item.id}
-                          title={item.promotion}
-                          subtitle={item.date}
-                          bottomDivider={true}
-                          rightIcon={
-                            <Ionicons name={'md-arrow-dropright'} size={30}/>
-                          }
-                          onPress={() => this.expensesAction(item.id)}/>
-                ))}
+                <ScrollView>
+                  {items.map((itemDate, key) => (
+                    <View key={key}>
+                      <Text h2>{itemDate.date}</Text>
+                      {
+                        itemDate.data.map(item => (
+                          <ListDetailComponent title={item.promotion}
+                                               subtitle={item.provider}
+                                               heightBody='{ height: 100 }'
+                                               detailHeader={item.detailHeader}
+                                               detailBody={item.detailBody}
+                                               key={item.id}></ListDetailComponent>
+                        ))
+                      }
+                    </View>
+                  ))}
+                </ScrollView>
               </Col>
             }
           </Row>

@@ -17,12 +17,15 @@ import OfflineNoticeComponent from '../Components/OfflineNoticeComponent'
 import UsersItemComponent from '../Components/Users/UsersItemComponent'
 import UsersHistoryComponent from '../Components/Users/UsersHistoryComponent'
 import ExpensesHistoryComponent from '../Components/Expenses/ExpensesHistoryComponent'
-import ExpensesCardComponent from '../Components/Expenses/ExpensesCardComponent'
 import ExpensesItemComponent from '../Components/Expenses/ExpensesItemComponent'
 import ExpensesItem2Component from '../Components/Expenses/ExpensesItem2Component'
 import ExpensesItem3Component from '../Components/Expenses/ExpensesItem3Component'
 import ExpensesItem4Component from '../Components/Expenses/ExpensesItem4Component'
 import ExpensesItemCamComponent from '../Components/Expenses/ExpensesItemCamComponent'
+
+import PromotionsHistoryComponent from '../Components/Promotions/PromotionsHistoryComponent'
+import PromotionsItemComponent from '../Components/Promotions/PromotionItemComponent'
+
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
     super(props)
@@ -57,7 +60,7 @@ const OptionTwo = createStackNavigator({
       title: 'Inicio',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -71,7 +74,7 @@ const OptionCamera = createStackNavigator({
       title: 'Formulario',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -85,7 +88,7 @@ const OptionUser = createStackNavigator({
       title: 'Usuario',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -94,7 +97,7 @@ const OptionUser = createStackNavigator({
     screen: UsersItemComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -108,7 +111,7 @@ const OptionExpense = createStackNavigator({
       title: 'Gastos',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -117,7 +120,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItemComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -126,7 +129,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItem2Component,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -135,7 +138,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItem3Component,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -144,7 +147,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItem4Component,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -153,27 +156,35 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItemCamComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
   }
 }, { initialRouteName: 'history' })
 
-/* const OptionPromotion = createStackNavigator({
+const OptionPromotion = createStackNavigator({
   history: {
-    screen: ,
+    screen: PromotionsHistoryComponent,
     navigationOptions: ({ navigation }) => ({
-      title: 'Gastos',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
+      },
+      headerTintColor: '#fff'
+    })
+  },
+  createItem: {
+    screen: PromotionsItemComponent,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
+      headerStyle: {
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
   }
 }, { initialRouteName: 'history' })
- */
 
 const logOutOption = createStackNavigator({
   logOut: {
@@ -181,7 +192,7 @@ const logOutOption = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
@@ -203,14 +214,14 @@ const OptionOne = createStackNavigator({
     screen: ForgotPasswordComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#27b185'
+        backgroundColor: '#0189bd'
       },
       headerTintColor: '#fff'
     })
   }
 }, { initialRouteName: 'Login' })
 const DrawerNavigation = createDrawerNavigator({
-  ScreenHome: {
+  /*ScreenHome: {
     screen: OptionTwo,
     navigationOptions: {
       drawerLabel: 'Inicio',
@@ -236,6 +247,16 @@ const DrawerNavigation = createDrawerNavigator({
         <Ionicons name='md-person' size={24} style={{ color: tintColor }}/>
       )
     }
+  },*/
+
+  ScreenPromotion: {
+    screen: OptionPromotion,
+    navigationOptions: {
+      drawerLabel: 'Promociones',
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons name='md-megaphone' size={24} style={{ color: tintColor }}/>
+      )
+    }
   },
   ScreenExpense: {
     screen: OptionExpense,
@@ -256,7 +277,7 @@ const DrawerNavigation = createDrawerNavigator({
     }
   }
 }, {
-  initialRouteName: 'ScreenHome'
+  initialRouteName: 'ScreenPromotion'
 })
 const navStack = createAppContainer(createSwitchNavigator(
   {
