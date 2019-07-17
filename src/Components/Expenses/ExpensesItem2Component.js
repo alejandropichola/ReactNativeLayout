@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Picker } from 'react-native'
+import { View, Picker, KeyboardAvoidingView } from 'react-native'
 import { Text, Button } from 'react-native-elements'
 import { container, inputIOS, inputAndroid, select } from '../../../assets/Styles'
 import DatePicker from 'react-native-datepicker'
@@ -35,30 +35,35 @@ export default class ExpensesItem2Component extends React.Component {
     }
   }
 
+  componentDidMount (): void {
+    this.back()
+  }
+
   render () {
     return (
-      <Grid>
-        <View></View>
-        <Col style={containerLogin}>
-          <Row size={30}>
-            <Col style={containerLogin} size={50}>
-              <Text>Promoción</Text>
-              <Picker selectedValue={this.state.expenseType}
-                      onValueChange={(itemValue, index) => {
-                        this.setState({ expenseType: itemValue })
-                      }}
-              >
-                <Picker.Item label='Promoción 1' value={1}></Picker.Item>
-                <Picker.Item label='Promoción 2' value={2}></Picker.Item>
-              </Picker>
-            </Col>
-            <Col style={containerLogin} size={50}>
+      <KeyboardAvoidingView>
+        <View>
+          <View style={containerLogin} size={50}>
+            <Text>Promoción</Text>
+            <Picker selectedValue={this.state.expenseType}
+                    onValueChange={(itemValue, index) => {
+                      this.setState({ expenseType: itemValue })
+                    }}
+            >
+              <Picker.Item label='Promoción 1' value={1}></Picker.Item>
+              <Picker.Item label='Promoción 2' value={2}></Picker.Item>
+            </Picker>
+          </View>
+          <View style={containerLogin} size={50}>
+            <View>
               <Text>Fecha</Text>
+            </View>
+            <View>
               <DatePicker
                 date={this.state.date}
                 mode="date"
                 placeholder="Seleccionar fecha"
-                format="YYYY-MM-DD"
+                format="DD-MM-YYYY"
                 confirmBtnText="Confirmar"
                 cancelBtnText="Cancelar"
                 customStyles={{
@@ -73,18 +78,18 @@ export default class ExpensesItem2Component extends React.Component {
                   }
                   // ... You can check the source to find the other keys.
                 }}
-                onDateChange={(date) => {this.setState({date: date})}}
+                onDateChange={(date) => {this.setState({ date: date })}}
               />
-            </Col>
-          </Row>
-          <Row size={10}>
-            <Col>
-              <Button buttonStyle={{ backgroundColor: '#27b185' }} onPress={() => this.next()}
-                      title='Siguiente'></Button>
-            </Col>
-          </Row>
-        </Col>
-      </Grid>
+            </View>
+          </View>
+        </View>
+        <View size={10}>
+          <View>
+            <Button buttonStyle={{ backgroundColor: '#27b185' }} onPress={() => this.next()}
+                    title='Siguiente'/>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
     )
   }
 }
