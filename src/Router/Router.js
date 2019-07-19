@@ -6,6 +6,7 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from 'react-navigation'
+import {primary} from '../../assets/Styles'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeComponent from '../Components/HomeComponent'
 import LoginComponent from '../Components/LoginComponent'
@@ -57,10 +58,9 @@ const OptionTwo = createStackNavigator({
   Home: {
     screen: HomeComponent,
     navigationOptions: ({ navigation }) => ({
-      title: 'Inicio',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -74,7 +74,7 @@ const OptionCamera = createStackNavigator({
       title: 'Formulario',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -88,7 +88,7 @@ const OptionUser = createStackNavigator({
       title: 'Usuario',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -97,7 +97,7 @@ const OptionUser = createStackNavigator({
     screen: UsersItemComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -108,10 +108,9 @@ const OptionExpense = createStackNavigator({
   history: {
     screen: ExpensesHistoryComponent,
     navigationOptions: ({ navigation }) => ({
-      title: 'Gastos',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -120,7 +119,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItemComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -129,7 +128,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItem2Component,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -138,7 +137,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItem3Component,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -147,7 +146,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItem4Component,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -156,7 +155,7 @@ const OptionExpense = createStackNavigator({
     screen: ExpensesItemCamComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -169,7 +168,7 @@ const OptionPromotion = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -179,7 +178,7 @@ const OptionPromotion = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -192,7 +191,7 @@ const logOutOption = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })
@@ -214,7 +213,7 @@ const OptionOne = createStackNavigator({
     screen: ForgotPasswordComponent,
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#0189bd'
+        backgroundColor: primary
       },
       headerTintColor: '#fff'
     })

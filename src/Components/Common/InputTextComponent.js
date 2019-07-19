@@ -19,13 +19,13 @@ class InputTextComponent extends React.Component {
     if (this.props.iconLeft && this.props.iconLeft.length > 0) {
       this.state.style = {
         borderBottomWidth: 2,
-        borderColor: '#5388d0',
+      //  borderColor: '#5388d0',
         paddingLeft: 18
       }
     } else {
       this.state.style = {
         borderBottomWidth: 2,
-        borderColor: '#5388d0',
+        //borderColor: '#5388d0',
       }
     }
     this.setState({ state })

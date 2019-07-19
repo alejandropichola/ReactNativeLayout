@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Picker, Image, PermissionsAndroid, Platform } from 'react-native'
+import { View, Picker, Image, PermissionsAndroid, Platform, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Text, Button } from 'react-native-elements'
-import { container, inputIOS, inputAndroid, select } from '../../../assets/Styles'
+import { container, inputIOS, inputAndroid, select, primary } from '../../../assets/Styles'
 import datePicker from 'react-native-datepicker'
 import { HelperText, TextInput } from 'react-native-paper'
 import { Grid, Col, Row } from 'react-native-easy-grid'
@@ -13,16 +13,10 @@ export default class ExpensesItemCamComponent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      expenseType: null,
-      line: null,
-      promotion: null,
-      expenses: [],
-      lines: [],
-      promotions: [],
       view: 1,
       hasCameraPermissions: null,
       hasCameraRollPermissions: null,
-      image: null,
+      image: [],
       pdf: null
     }
   }
@@ -30,6 +24,7 @@ export default class ExpensesItemCamComponent extends React.Component {
   next () {
     this.props.navigation.navigate('history')
   }
+
   async getCameraPermissions () {
     try {
       const granted = await PermissionsAndroid.request(
@@ -86,7 +81,7 @@ export default class ExpensesItemCamComponent extends React.Component {
       })
         .then(response => {
           this.refs.toast.show('Se ha subido exitosamente!')
-          this.setState({image: null})
+          this.setState({ image: null })
         })
         .catch(err => {
           console.error(err)
@@ -97,12 +92,17 @@ export default class ExpensesItemCamComponent extends React.Component {
     const options = {
       mediaType: 'photo',
       cancelButtonTitle: 'Cancelar',
-      cropping: true,
-      includeBase64: true
+      // cropping: true,
+      includeBase64: true,
+      multiple: true
     }
     ImagePicker.openPicker(options)
       .then((response) => {
-        this.setState({ image: response })
+        let images = this.state.image
+        response.forEach(item => {
+          images.push(item)
+        })
+        this.setState({ image: images })
       })
   }
 
@@ -115,8 +115,16 @@ export default class ExpensesItemCamComponent extends React.Component {
     }
     ImagePicker.openCamera(options)
       .then((response) => {
-        this.setState({ image: response })
+        let images = this.state.image
+        images.push(response)
+        this.setState({ image: images })
       })
+  }
+
+  deleteImage (key) {
+    const data = this.state.image
+    data.splice(key, 1)
+    this.setState({ image: data })
   }
 
   back () {
@@ -129,27 +137,60 @@ export default class ExpensesItemCamComponent extends React.Component {
   render () {
     let { image } = this.state
     return (
-      <Grid>
-        <View></View>
-        <Col style={containerLogin}>
-          <Row size={30}>
-            <Col style={containerLogin} size={50}>
-              <Button onPress={this.getImageLibrary} icon={<Ionicons name='md-images' size={35}/>}></Button>
-            </Col>
-            <Col style={containerLogin} size={50}>
-              <Button onPress={this.getCamera} icon={<Ionicons name='md-camera' size={35}/>}></Button>
-            </Col>
-          </Row>
-          <Row size={10}>
-            <Col>
-              {image && image.data ? <Image source={{ uri: 'data:image/jpeg;base64,' + image.data }}
-                                            style={{ width: 200, height: 200 }}/> : null}
-              <Button buttonStyle={{ backgroundColor: '#27b185' }} onPress={() => this.next()}
-                      title='Guardar'></Button>
-            </Col>
-          </Row>
-        </Col>
-      </Grid>
+      <KeyboardAvoidingView style={containerLogin}>
+        <ScrollView
+          style={{
+            width: '100%',
+            padding: 4
+          }}
+        >
+          <View></View>
+          <Col>
+            <Row size={30}>
+              <Col style={containerLogin} size={50}>
+                <Ionicons onPress={this.getImageLibrary} name='md-images' size={35}/>
+              </Col>
+              <Col style={containerLogin} size={50}>
+                <Ionicons name='md-camera' size={35} onPress={this.getCamera}/>
+              </Col>
+            </Row>
+            <Row size={10}>
+              <Col style={containerLogin}>
+                {
+                  image.map((items, key) => (
+                    <Row key={key} style={{
+                      alignItems: 'center', flex: 1,
+                      flexDirection: 'column', paddingBottom: 4
+                    }}>
+                      <View style={{width: 200, height: 200, position: 'relative'}}>
+                        <Ionicons style={{
+                          width: 20,
+                          height: 20,
+                          marginBottom: 5,
+                          paddingLeft: 4,
+                          position: 'absolute',
+                          color: '#cf0000',
+                          borderRadius: 8,
+                          borderWidth: 2,
+                          borderColor: '#000',
+                          backgroundColor: '#bcbcbc',
+                          top: 5,
+                          left: 5,
+                          zIndex: 1
+                        }} onPress={() => this.deleteImage(key)} name='md-remove' size={20}/>
+                        <Image source={{ uri: 'data:image/jpeg;base64,' + items.data }}
+                               style={{ width: 200, height: 200, position: 'absolute', zIndex: 0 }}/>
+                      </View>
+                    </Row>
+                  ))
+                }
+                <Button buttonStyle={{ backgroundColor: primary, paddingBottom: 15 }} onPress={() => this.next()}
+                        title='Guardar'/>
+              </Col>
+            </Row>
+          </Col>
+        </ScrollView>
+      </KeyboardAvoidingView>
     )
   }
 }

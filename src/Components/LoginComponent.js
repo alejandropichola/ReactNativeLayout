@@ -12,7 +12,7 @@ import InputTextComponent from './Common/InputTextComponent'
 import { forGot, container, titleOne } from '../../assets/Styles'
 import {containerLogin} from '../../assets/Login'
 import { onSignIn, isSignedIn } from '../Services/SESSION'
-
+import validator from 'validator'
 class LoginComponent extends React.Component {
   focusNextField (id) {
     this.inputs[id].focus()
@@ -28,7 +28,8 @@ class LoginComponent extends React.Component {
       userErrorMsg: null,
       passErrorMsg: null,
       buttonSubmit: false,
-      isLoading: true
+      isLoading: true,
+      prueba: null
     }
   }
 
@@ -74,9 +75,16 @@ class LoginComponent extends React.Component {
     return true
   }
   userIsValid = () => {
-    if (!this.passIsSet() || this.state.user.length <= 0) {
+    if (!this.userIsSet() || this.state.user.length <= 0) {
       this.setState({
-        userErrorMsg: 'Usuario requerida'
+        userErrorMsg: 'Correo requerida'
+      })
+      return false
+    }
+
+    if (!validator.isEmail(this.state.user)) {
+      this.setState({
+        userErrorMsg: 'Debe ingresar un correo electrónico'
       })
       return false
     }
@@ -107,7 +115,6 @@ class LoginComponent extends React.Component {
         })
     }
   }
-
   render () {
     return (
       <KeyboardAvoidingView
@@ -120,8 +127,8 @@ class LoginComponent extends React.Component {
                            style={{width: '100%', height: '100%'}}>
           <View style={containerLogin}>
           <Text style={titleOne}>Iniciar sesión</Text>
-          <InputTextComponent label='Usuario'
-                              placeHolder='Ingrese usuario'
+          <InputTextComponent label='Correo'
+                              placeHolder='Ingrese correo electrónico'
                               note=''
                               MessageError={this.state.userErrorMsg}
                               secure={false}
@@ -133,7 +140,7 @@ class LoginComponent extends React.Component {
                               submit={() => { this.secondTextInput.focus() }}
                               blurSubmit={false}
           />
-
+            <Text>{this.state.prueba}</Text>
           <InputTextComponent label='Contraseña'
                               placeHolder='Ingrese contraseña'
                               note=''

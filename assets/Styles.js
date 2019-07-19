@@ -31,18 +31,17 @@ export const paddingRightPlaceholder = {
 
 export const iconLeftStyle = {
   position: 'absolute',
-  top: 14
+  top: 22,
+  left: 5
 }
 export const iconRightStyle = {
   position: 'absolute',
-  top: 14,
-  right: 4
+  top: 16,
+  right: 5
 }
 export const inputType = {
   height: 50,
-  marginBottom: 6,
-  // borderBottomWidth: 1,
-  // borderColor: 'black',
+  marginBottom: 6
 }
 
 export const forGot = {

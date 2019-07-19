@@ -166,7 +166,7 @@ export default class ExpensesHistoryComponent extends React.Component {
             <Col size={30}>
               <Button onPress={this.createExpense} buttonStyle={{ width: 50 }} icon={
                 <Ionicons name='md-add' size={30}/>
-              }></Button>
+              }/>
             </Col>
           </Row>
           <Row size={90} style={{ paddingTop: 35 }}>
@@ -180,10 +180,12 @@ export default class ExpensesHistoryComponent extends React.Component {
                         itemDate.data.map(item => (
                           <ListDetailComponent title={item.promotion}
                                                subtitle={item.provider}
-                                               heightBody='{ height: 100 }'
+                                               heightBody="{ height: '400px'}"
                                                detailHeader={item.detailHeader}
                                                detailBody={item.detailBody}
-                                               key={item.id}></ListDetailComponent>
+                                               widthHeader={50}
+                                               heightRow={30}
+                                               key={item.id} showPhoto={true}/>
                         ))
                       }
                     </View>
