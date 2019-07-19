@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import {TextInput} from 'react-native-paper'
-import { inputType } from '../../../assets/Styles'
+import { inputType, primary } from '../../../assets/Styles'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { iconLeftStyle, paddingLeftPlaceholder, paddingRightPlaceholder, iconRightStyle, errorMsg } from '../../../assets/Styles'
+import { iconLeftStyle, paddingLeftPlaceholder, paddingRightPlaceholder, iconRightStyle, errorMsg, widthInput } from '../../../assets/Styles'
 
-class InputTextComponent extends React.Component {
+class InputTextDarkComponent extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -19,13 +19,13 @@ class InputTextComponent extends React.Component {
     if (this.props.iconLeft && this.props.iconLeft.length > 0) {
       this.state.style = {
         borderBottomWidth: 2,
-        borderColor: '#5388d0',
+        borderColor: primary,
         paddingLeft: 18
       }
     } else {
       this.state.style = {
         borderBottomWidth: 2,
-        borderColor: '#5388d0',
+        borderColor: primary,
       }
     }
     this.setState({ state })
@@ -68,12 +68,12 @@ class InputTextComponent extends React.Component {
                      autocorrect={false}
                      autoCapitalize='none'
                      keyboardType={this.props.keyboardType}
-                     style={[inputType, this.state.style,
+                     style={[inputType,
                        this.props.iconLeft && this.props.iconLeft.length > 0 ? paddingLeftPlaceholder : null,
                        this.props.iconRight && this.props.iconRight.length > 0 ? paddingRightPlaceholder : null
                      ]}
-                     theme={{colors: {background: 'transparent', text: '#fff', placeholder: '#e5e5e5', primary: '#fff'}}}
-                     underlineColor='#fff'
+                     theme={{colors: {background: 'transparent', color: primary, primary: primary}}}
+                     underlineColor={primary}
                      secureTextEntry={this.state.secureInput}
                      onFocus={() => this.onFocus()}
                      onBlur={() => this.onBlur()}
@@ -97,4 +97,4 @@ class InputTextComponent extends React.Component {
   }
 }
 
-export default InputTextComponent
+export default InputTextDarkComponent
