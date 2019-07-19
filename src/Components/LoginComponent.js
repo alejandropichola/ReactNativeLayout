@@ -33,23 +33,6 @@ class LoginComponent extends React.Component {
     }
   }
 
-  isLogin = () => {
-    return isSignedIn()
-      .then((res) => {
-        this.setState({ isLoading: false })
-        if (res) {
-          this.props.navigation.navigate('App')
-        }
-      })
-      .catch(err => {
-        Alert.alert('error')
-      })
-  }
-
-  componentDidMount () {
-    return this.isLogin()
-  }
-
   passIsSet = () => {
     return (this.state.password !== null)
   }
@@ -108,12 +91,35 @@ class LoginComponent extends React.Component {
   submitForm = () => {
     Keyboard.dismiss()
     if (this.validationForm()) {
-      return onSignIn()
-        .then(() => this.isLogin())
+      const data = {
+        user: this.state.user,
+        pass: this.state.password
+      }
+      return onSignIn(data)
+        .then(() => {
+          return this.isLogin()
+        })
         .catch(err => {
           throw err
         })
     }
+  }
+
+  isLogin = () => {
+    return isSignedIn()
+      .then((res) => {
+        this.setState({ isLoading: false })
+        if (res) {
+          this.props.navigation.navigate('App')
+        }
+      })
+      .catch(err => {
+        Alert.alert('error')
+      })
+  }
+
+  componentDidMount () {
+    return this.isLogin()
   }
   render () {
     return (
@@ -127,7 +133,7 @@ class LoginComponent extends React.Component {
                            style={{width: '100%', height: '100%'}}>
           <View style={containerLogin}>
           <Text style={titleOne}>Iniciar sesión</Text>
-          <InputTextComponent label='Correo'
+          <InputTextComponent label='   Correo'
                               placeHolder='Ingrese correo electrónico'
                               note=''
                               MessageError={this.state.userErrorMsg}
@@ -139,9 +145,10 @@ class LoginComponent extends React.Component {
                               returnKey={'next'}
                               submit={() => { this.secondTextInput.focus() }}
                               blurSubmit={false}
+                              colorIcon={"#fff"}
           />
             <Text>{this.state.prueba}</Text>
-          <InputTextComponent label='Contraseña'
+          <InputTextComponent label='   Contraseña'
                               placeHolder='Ingrese contraseña'
                               note=''
                               MessageError={this.state.passErrorMsg}
@@ -153,6 +160,7 @@ class LoginComponent extends React.Component {
                               sizeIcon={20}
                               submit={this.submitForm}
                               refInput={(input) => { this.secondTextInput = input }}
+                              colorIcon={"#fff"}
           />
           <Text>{`\n`}</Text>
           <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}

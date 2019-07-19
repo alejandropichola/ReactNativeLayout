@@ -1,14 +1,15 @@
 const config = {
   env: 'local',
   local: {
-    apiRoot: 'http://192.168.86.47:3000'
+    apiRoot: 'http://svn-desa.cloudapp.net:8080/megapharma-api'
   },
   development: {
-    apiRoot: 'http://192.168.86.47:3000'
+    apiRoot: 'http://localhost:50942'
   },
   production: {
-    apiRoot: 'http://192.168.86.47:3000'
+    apiRoot: 'http://localhost:50942'
   },
+  apiSrvAuth: '/api/token',
   apiSrvUsers: '/users',
   apiSrvUserItem: '/users/{userId}'
 }
