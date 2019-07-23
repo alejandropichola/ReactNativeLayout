@@ -23,7 +23,6 @@ export const Session = () => {
   })
     .then((response) => response.json())
     .then((responseData) => {
-      console.log(responseData)
 
       Alert.alert(
         'POST Response',
@@ -32,34 +31,16 @@ export const Session = () => {
     })
     .done()
 }
-export const onSignIn = async (data) => {
-  const env = Config.env || 'local'
-  const apiRoot = Config[env].apiRoot
-  const url = apiRoot + Config.apiSrvAuth
-  const params = {
-    username: data ? data.user : null,
-    password: data ? data.pass : null,
-    grant_type: 'password'
+
+export const setToken = async (token) => {
+  try {
+    await AsyncStorage.setItem(USER_KEY, token)
+  } catch (e) {
+    console.log(e)
   }
-  let formData = []
-  for (const item in params) {
-    const encodeKey = encodeURIComponent(item)
-    const encodeValue = encodeURIComponent(params[item])
-    formData.push(encodeKey + '=' + encodeValue)
-  }
-  formData = formData.join('&')
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: formData
-  }).then((response) => response.json())
-    .then((responseData) => {
-      const token = responseData ? responseData['access_token'] : null
-      return AsyncStorage.setItem(USER_KEY, token)
-    })
-    .done()
+}
+export const onSignIn = () => {
+
 }
 
 export const onSignOut = async () => {
@@ -74,7 +55,6 @@ export const isSignedIn = () => {
   return new Promise((resolve, reject) => {
     AsyncStorage.getItem(USER_KEY)
       .then(res => {
-        console.warn(res)
         if (res !== null) {
           resolve(true)
         } else {
