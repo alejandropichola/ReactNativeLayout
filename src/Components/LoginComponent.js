@@ -1,13 +1,13 @@
 import React from 'react'
 import {
   Text,
-  Button,
   View,
   Keyboard,
   KeyboardAvoidingView, Alert,
   ActivityIndicator,
   ImageBackground
 } from 'react-native'
+import {Button} from 'react-native-elements'
 import InputTextComponent from './Common/InputTextComponent'
 import { forGot, container, titleOne } from '../../assets/Styles'
 import { containerLogin } from '../../assets/Login'
@@ -108,6 +108,7 @@ class LoginComponent extends React.Component {
         const encodeValue = encodeURIComponent(params[item])
         formData.push(encodeKey + '=' + encodeValue)
       }
+      this.setState({buttonSubmit: true})
       formData = formData.join('&')
       return fetch(url, {
         method: 'POST',
@@ -120,16 +121,19 @@ class LoginComponent extends React.Component {
           return responseData ? responseData['access_token'] : null
         })
         .then((token) => {
+          this.setState({buttonSubmit: false})
           if (!token) {
             this.refs.toast.show('Credenciales inválidas')
             return true;
           }
           return setToken(token)
             .then(() => {
+              this.setState({buttonSubmit: false})
               return this.isLogin()
             })
         })
         .then(() => {
+          this.setState({buttonSubmit: false})
           return this.isLogin()
         })
         .catch(err => {
@@ -212,6 +216,7 @@ class LoginComponent extends React.Component {
                                   submit={() => { this.secondTextInput.focus() }}
                                   blurSubmit={false}
                                   colorIcon={'#fff'}
+                                  maxLength={100}
               />
               <Text>{this.state.prueba}</Text>
               <InputTextComponent label='   Contraseña'
@@ -227,10 +232,16 @@ class LoginComponent extends React.Component {
                                   submit={this.submitForm}
                                   refInput={(input) => { this.secondTextInput = input }}
                                   colorIcon={'#fff'}
+                                  maxLength={100}
               />
               <Text>{`\n`}</Text>
-              <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}
-                      disabled={this.state.buttonSubmit}/>
+              {
+                (this.state.buttonSubmit === true) ?
+                  <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}
+                                                            disabled={this.state.buttonSubmit} loading/> :
+                  <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}
+                          disabled={this.state.buttonSubmit}/>
+              }
               <Text style={forGot} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
                 Recuperar contraseña
               </Text>
