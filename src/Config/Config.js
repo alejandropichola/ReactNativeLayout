@@ -11,7 +11,8 @@ const config = {
   },
   apiSrvAuth: '/api/token',
   apiSrvUsers: '/users',
-  apiSrvUserItem: '/users/{userId}'
+  apiSrvUserItem: '/users/{userId}',
+  apiSrvUserForgotPassword: '/GetForgotPassword?usuario={usuario}'
 }
 
 export default config

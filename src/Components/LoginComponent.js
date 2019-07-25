@@ -218,7 +218,6 @@ class LoginComponent extends React.Component {
                                   colorIcon={'#fff'}
                                   maxLength={100}
               />
-              <Text>{this.state.prueba}</Text>
               <InputTextComponent label='   Contraseña'
                                   placeHolder='Ingrese contraseña'
                                   note=''
