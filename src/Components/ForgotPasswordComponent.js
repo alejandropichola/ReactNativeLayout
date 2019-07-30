@@ -58,7 +58,8 @@ class ForgotPasswordComponent extends React.Component {
         method: 'GET',
       }).then((response) => {
         this.setState({ buttonSubmit: false })
-        if (response && response.response === true) {
+        console.warn(response)
+        if (response && response.Response === true) {
           this.refs.toast.show('Enviado exitosamente')
         }
       }).catch(err => {
