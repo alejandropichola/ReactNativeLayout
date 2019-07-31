@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Picker } from 'react-native'
 import { Text, Button, Input } from 'react-native-elements'
-import { container, inputIOS, inputAndroid, select } from '../../../assets/Styles'
+import { container, inputIOS, inputAndroid, select,primary } from '../../../assets/Styles'
 import datePicker from 'react-native-datepicker'
 import { HelperText, TextInput } from 'react-native-paper'
 import { Grid, Col, Row } from 'react-native-easy-grid'

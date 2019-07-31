@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Picker, KeyboardAvoidingView } from 'react-native'
 import { Text, Button } from 'react-native-elements'
-import { container, inputIOS, inputAndroid, select } from '../../../assets/Styles'
+import { container, inputIOS, inputAndroid, select, primary } from '../../../assets/Styles'
 import DatePicker from 'react-native-datepicker'
 import { containerLogin, heightInput } from '../../../assets/Login'
 import InputTextDarkComponent from '../Common/InputTextDarkComponent'

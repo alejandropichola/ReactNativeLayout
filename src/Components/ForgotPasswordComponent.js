@@ -34,7 +34,7 @@ class ForgotPasswordComponent extends React.Component {
       return false
     }
 
-    if (!validator.isEmail(this.state.user)) {
+    if (!validator.isEmail(this.state.user.trim())) {
       this.setState({
         userErrorMsg: 'Debe ingresar un correo electrónico'
       })
@@ -58,7 +58,8 @@ class ForgotPasswordComponent extends React.Component {
         method: 'GET',
       }).then((response) => {
         this.setState({ buttonSubmit: false })
-        if (response) {
+        console.warn(response)
+        if (response && response.Response === true) {
           this.refs.toast.show('Enviado exitosamente')
         }
       }).catch(err => {

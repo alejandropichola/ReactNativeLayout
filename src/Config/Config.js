@@ -1,7 +1,7 @@
 const config = {
   env: 'local',
   local: {
-    apiRoot: 'http://svn-desa.cloudapp.net:8080/megapharma-api'
+    apiRoot: 'http://svn-desa.cloudapp.net:8080/Development/TEST_MEGALAB/API/api'
   },
   development: {
     apiRoot: 'http://localhost:50942'
