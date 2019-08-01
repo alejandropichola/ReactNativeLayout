@@ -4,10 +4,10 @@ const config = {
     apiRoot: 'http://svn-desa.cloudapp.net:8080/Development/TEST_MEGALAB/API/api'
   },
   development: {
-    apiRoot: 'http://localhost:50942'
+    apiRoot: 'http://svn-desa.cloudapp.net:8080/Development/TEST_MEGALAB/API/api'
   },
   production: {
-    apiRoot: 'http://localhost:50942'
+    apiRoot: 'http://svn-desa.cloudapp.net:8080/megapharma-api/api'
   },
   apiSrvAuth: '/api/token',
   apiSrvUsers: '/users',
