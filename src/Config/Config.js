@@ -1,5 +1,5 @@
 const config = {
-  env: 'local',
+  env: 'production',
   local: {
     apiRoot: 'http://svn-desa.cloudapp.net:8080/Development/TEST_MEGALAB/API/api'
   },
@@ -9,7 +9,7 @@ const config = {
   production: {
     apiRoot: 'http://svn-desa.cloudapp.net:8080/megapharma-api/api'
   },
-  apiSrvAuth: '/api/token',
+  apiSrvAuth: '/token',
   apiSrvUsers: '/users',
   apiSrvUserItem: '/users/{userId}',
   apiSrvUserForgotPassword: '/GetForgotPassword?usuario={usuario}'

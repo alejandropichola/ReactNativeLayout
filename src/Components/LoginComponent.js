@@ -5,11 +5,12 @@ import {
   Keyboard,
   KeyboardAvoidingView, Alert,
   ActivityIndicator,
-  ImageBackground
+  ImageBackground,
+  Image
 } from 'react-native'
-import {Button} from 'react-native-elements'
+import { Button } from 'react-native-elements'
 import InputTextComponent from './Common/InputTextComponent'
-import { forGot, container, titleOne } from '../../assets/Styles'
+import { forGot, container, titleOne, primary, iconCenter, colorPrimary } from '../../assets/Styles'
 import { containerLogin } from '../../assets/Login'
 import { onSignIn, isSignedIn, setToken } from '../Services/SESSION'
 import validator from 'validator'
@@ -17,11 +18,12 @@ import Config from '../Config/Config'
 import Toast, { DURATION } from 'react-native-easy-toast'
 
 class LoginComponent extends React.Component {
-  focusNextField (id) {
+  _isMounted = false
+  focusNextField(id) {
     this.inputs[id].focus()
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.focusNextField = this.focusNextField.bind(this)
     this.inputs = ['user', 'password']
@@ -108,7 +110,7 @@ class LoginComponent extends React.Component {
         const encodeValue = encodeURIComponent(params[item])
         formData.push(encodeKey + '=' + encodeValue)
       }
-      this.setState({buttonSubmit: true})
+      this.setState({ buttonSubmit: true })
       formData = formData.join('&')
       return fetch(url, {
         method: 'POST',
@@ -121,19 +123,19 @@ class LoginComponent extends React.Component {
           return responseData ? responseData['access_token'] : null
         })
         .then((token) => {
-          this.setState({buttonSubmit: false})
+          this.setState({ buttonSubmit: false })
           if (!token) {
             this.refs.toast.show('Credenciales inválidas')
             return true;
           }
           return setToken(token)
             .then(() => {
-              this.setState({buttonSubmit: false})
+              this.setState({ buttonSubmit: false })
               return this.isLogin()
             })
         })
         .then(() => {
-          this.setState({buttonSubmit: false})
+          this.setState({ buttonSubmit: false })
           return this.isLogin()
         })
         .catch(err => {
@@ -186,65 +188,72 @@ class LoginComponent extends React.Component {
       })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     return this.isLogin()
   }
 
-  render () {
+  render() {
     return (
       <KeyboardAvoidingView
         style={container}
         behavior='position'
         keyboardVerticalOffset={-400}>
-        <Toast ref="toast"/>
-        {this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff"/> :
-          <ImageBackground source={require('../../assets/images/home-bkg1-tab.jpg')}
-                           imageStyle={{ resizeMode: 'cover' }}
-                           style={{ width: '100%', height: '100%' }}>
+        <Toast ref="toast" />
+        {this.state.isLoading ? <ActivityIndicator size="large" color="#0000ff" /> :
+          <View style={{ width: '100%', height: '100%' }}>
             <View style={containerLogin}>
-              <Text style={titleOne}>Iniciar sesión</Text>
+              <Text style={[titleOne, colorPrimary]}>Iniciar sesión</Text>
               <InputTextComponent label='   Correo'
-                                  placeHolder='Ingrese correo electrónico'
-                                  note=''
-                                  MessageError={this.state.userErrorMsg}
-                                  secure={false}
-                                  onChangeText={(user) => this.setState({ user })}
-                                  value={this.state.user}
-                                  iconLeft='md-person'
-                                  sizeIcon={20}
-                                  returnKey={'next'}
-                                  submit={() => { this.secondTextInput.focus() }}
-                                  blurSubmit={false}
-                                  colorIcon={'#fff'}
-                                  maxLength={100}
+                placeHolder='Ingrese correo electrónico'
+                note=''
+                MessageError={this.state.userErrorMsg}
+                secure={false}
+                onChangeText={(user) => this.setState({ user })}
+                value={this.state.user}
+                iconLeft='md-person'
+                sizeIcon={20}
+                returnKey={'next'}
+                submit={() => { this.secondTextInput.focus() }}
+                blurSubmit={false}
+                colorIcon={primary}
+                maxLength={100}
               />
               <InputTextComponent label='   Contraseña'
-                                  placeHolder='Ingrese contraseña'
-                                  note=''
-                                  MessageError={this.state.passErrorMsg}
-                                  secure={true}
-                                  onChangeText={(password) => this.setState({ password })}
-                                  value={this.state.password}
-                                  iconLeft='md-lock'
-                                  iconRight={'md-eye'}
-                                  sizeIcon={20}
-                                  submit={this.submitForm}
-                                  refInput={(input) => { this.secondTextInput = input }}
-                                  colorIcon={'#fff'}
-                                  maxLength={100}
+                placeHolder='Ingrese contraseña'
+                note=''
+                MessageError={this.state.passErrorMsg}
+                secure={true}
+                onChangeText={(password) => this.setState({ password })}
+                value={this.state.password}
+                iconLeft='md-lock'
+                iconRight={'md-eye'}
+                sizeIcon={20}
+                submit={this.submitForm}
+                refInput={(input) => { this.secondTextInput = input }}
+                colorIcon={primary}
+                maxLength={100}
               />
               <Text>{`\n`}</Text>
               {
                 (this.state.buttonSubmit === true) ?
-                  <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}
-                                                            disabled={this.state.buttonSubmit} loading/> :
-                  <Button title='Entrar' style={{ marginTop: 2 }} onPress={this.submitForm}
-                          disabled={this.state.buttonSubmit}/>
+                  <Button title='Entrar' buttonStyle={{ backgroundColor: primary }} style={{ marginTop: 2 }} onPress={this.submitForm}
+                    disabled={this.state.buttonSubmit} loading /> :
+                  <Button title='Entrar' buttonStyle={{ backgroundColor: primary }} style={{ marginTop: 2 }} onPress={this.submitForm}
+                    disabled={this.state.buttonSubmit} />
               }
               <Text style={forGot} onPress={() => this.props.navigation.navigate('ForgotPassword')}>
                 Recuperar contraseña
               </Text>
-            </View></ImageBackground>}
+              <Text>{`\n`}</Text>
+            <View style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image style={{ width: 250, height: 100 }} source={require('../../assets/images/iconoprincipal.png')} />
+            </View>
+            </View>
+          </View>
+        }
       </KeyboardAvoidingView>
     )
   }

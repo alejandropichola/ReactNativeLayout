@@ -15,8 +15,6 @@ import ForgotPasswordComponent from '../Components/ForgotPasswordComponent'
 import FormCamComponent from '../Components/FormCamComponent'
 import { isSignedIn, onSignOut } from '../Services/SESSION'
 import OfflineNoticeComponent from '../Components/OfflineNoticeComponent'
-import UsersItemComponent from '../Components/Users/UsersItemComponent'
-import UsersHistoryComponent from '../Components/Users/UsersHistoryComponent'
 import ExpensesHistoryComponent from '../Components/Expenses/ExpensesHistoryComponent'
 import ExpensesItemComponent from '../Components/Expenses/ExpensesItemComponent'
 import ExpensesItem2Component from '../Components/Expenses/ExpensesItem2Component'
@@ -26,6 +24,9 @@ import ExpensesItemCamComponent from '../Components/Expenses/ExpensesItemCamComp
 
 import PromotionsHistoryComponent from '../Components/Promotions/PromotionsHistoryComponent'
 import PromotionsItemComponent from '../Components/Promotions/PromotionItemComponent'
+const contentOption = {
+  activeLabelStyle: '#00935e'
+}
 
 class NavigationDrawerStructure extends React.Component {
   constructor (props) {
@@ -81,28 +82,6 @@ const OptionCamera = createStackNavigator({
   }
 })
 
-const OptionUser = createStackNavigator({
-  User: {
-    screen: UsersHistoryComponent,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Usuario',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
-      headerStyle: {
-        backgroundColor: primary
-      },
-      headerTintColor: '#fff'
-    })
-  },
-  CreateUser: {
-    screen: UsersItemComponent,
-    navigationOptions: ({ navigation }) => ({
-      headerStyle: {
-        backgroundColor: primary
-      },
-      headerTintColor: '#fff'
-    })
-  }
-}, { initialRouteName: 'User' })
 
 const OptionExpense = createStackNavigator({
   history: {
@@ -237,42 +216,36 @@ const DrawerNavigation = createDrawerNavigator({
         <Ionicons name="md-camera" size={24} style={{ color: tintColor }}/>
       )
     }
-  },
-  ScreenUser: {
-    screen: OptionUser,
-    navigationOptions: {
-      drawerLabel: 'Usuarios',
-      drawerIcon: ({ tintColor }) => (
-        <Ionicons name='md-person' size={24} style={{ color: tintColor }}/>
-      )
-    }
   },*/
 
   ScreenPromotion: {
     screen: OptionPromotion,
     navigationOptions: {
       drawerLabel: 'Promociones',
-      drawerIcon: ({ tintColor }) => (
-        <Ionicons name='md-megaphone' size={24} style={{ color: tintColor }}/>
-      )
+      drawerIcon: () => (
+        <Ionicons name='md-megaphone' size={24} style={{ color: primary }}/>
+      ),
+      contentOption: contentOption
     }
   },
   ScreenExpense: {
     screen: OptionExpense,
     navigationOptions: {
       drawerLabel: 'Gastos',
-      drawerIcon: ({ tintColor }) => (
-        <Ionicons name='md-document' size={24} style={{ color: tintColor }}/>
-      )
+      drawerIcon: () => (
+        <Ionicons name='md-document' size={24} style={{ color: primary }}/>
+      ),
+      contentOption: contentOption
     }
   },
   ScreenLogOut: {
     screen: logOutOption,
     navigationOptions: {
       drawerLabel: 'Cerrar sesión',
-      drawerIcon: ({ tintColor }) => (
-        <Ionicons name='md-log-out' size={24} style={{ color: tintColor }}/>
-      )
+      drawerIcon: () => (
+        <Ionicons name='md-log-out' size={24} style={{ color: primary }}/>
+      ),
+      contentOption: contentOption
     }
   }
 }, {

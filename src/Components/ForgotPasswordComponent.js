@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Button, Text, Keyboard, KeyboardAvoidingView, ImageBackground } from 'react-native'
+import { View, Text, Keyboard, KeyboardAvoidingView, ImageBackground } from 'react-native'
+import { Button } from 'react-native-elements'
 import InputTextComponent from './Common/InputTextComponent'
-import { container, containerMargin, titleOne } from '../../assets/Styles'
+import { container, containerMargin, primary, titleOne, colorPrimary } from '../../assets/Styles'
 import { containerLogin } from '../../assets/Login'
 import validator from 'validator'
 import Config from '../Config/Config'
@@ -56,10 +57,12 @@ class ForgotPasswordComponent extends React.Component {
       this.setState({ buttonSubmit: true })
       return fetch(url, {
         method: 'GET',
-      }).then((response) => {
+      }).then((response)=> response.json())
+      .then((data) => {
+
         this.setState({ buttonSubmit: false })
-        console.warn(response)
-        if (response && response.Response === true) {
+        if (data && data.Response === true) {
+          this.setState({ user: null })
           this.refs.toast.show('Enviado exitosamente')
         }
       }).catch(err => {
@@ -82,11 +85,10 @@ class ForgotPasswordComponent extends React.Component {
         behavior='position'
         keyboardVerticalOffset={-300}>
         <Toast ref="toast"/>
-        <ImageBackground source={require('../../assets/images/home-bkg1-tab.jpg')}
-                         imageStyle={{ resizeMode: 'cover' }}
+        <View
                          style={{ width: '100%', height: '100%' }}>
           <View style={containerLogin}>
-            <Text style={titleOne}>Recuperar contraseña</Text>
+            <Text style={[titleOne, colorPrimary]}>Recuperar contraseña</Text>
             <InputTextComponent label='   Correo'
                                 placeHolder='Ingrese correo electrónico'
                                 note=''
@@ -96,19 +98,19 @@ class ForgotPasswordComponent extends React.Component {
                                 value={this.state.user}
                                 iconLeft='md-mail'
                                 sizeIcon={20}
-                                colorIcon={'#fff'}
+                                colorIcon={primary}
                                 maxLength={100}
             />
             <Text>{`\n`}</Text>
             {
               (this.state.buttonSubmit === true) ?
-                <Button title='Enviar' style={{ marginTop: 2 }} onPress={this.submitForm}
+                <Button title='Enviar' buttonStyle={{backgroundColor: primary }}  style={{ marginTop: 2 }} onPress={this.submitForm}
                         disabled={this.state.buttonSubmit} loading/> :
-                <Button title='Enviar' style={{ marginTop: 2 }} onPress={this.submitForm}
+                <Button title='Enviar' buttonStyle={{backgroundColor: primary }}  style={{ marginTop: 2 }} onPress={this.submitForm}
                         disabled={this.state.buttonSubmit}/>
             }
           </View>
-        </ImageBackground>
+        </View>
       </KeyboardAvoidingView>
     )
   }
