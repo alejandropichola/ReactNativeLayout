@@ -3,7 +3,7 @@ import { View, ScrollView, ActivityIndicator, Alert, AlertIos, Platform } from '
 import { Button, ListItem, Text } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Row, Col, Grid } from 'react-native-easy-grid'
-import { container, table } from '../../../assets/Styles'
+import { container, table, primary } from '../../../assets/Styles'
 import Toast, { DURATION } from 'react-native-easy-toast'
 import ListDetailComponent from '../Common/ListDetailComponent'
 
@@ -164,7 +164,7 @@ export default class ExpensesHistoryComponent extends React.Component {
               <Text h3>Gestión de gastos</Text>
             </Col>
             <Col size={30}>
-              <Button onPress={this.createExpense} buttonStyle={{ width: 50 }} icon={
+              <Button onPress={this.createExpense} buttonStyle={{ width: 50, backgroundColor: primary }} icon={
                 <Ionicons name='md-add' size={30}/>
               }/>
             </Col>

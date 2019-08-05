@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import {TextInput} from 'react-native-paper'
-import { inputType } from '../../../assets/Styles'
+import { inputType, primary } from '../../../assets/Styles'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { iconLeftStyle, paddingLeftPlaceholder, paddingRightPlaceholder, iconRightStyle, errorMsg } from '../../../assets/Styles'
 
@@ -18,13 +18,13 @@ class InputTextComponent extends React.Component {
     const state = this.state
     if (this.props.iconLeft && this.props.iconLeft.length > 0) {
       this.state.style = {
-        borderBottomWidth: 2,
+       // borderBottomWidth: 2,
       //  borderColor: '#5388d0',
         paddingLeft: 18
       }
     } else {
       this.state.style = {
-        borderBottomWidth: 2,
+      //  borderBottomWidth: 2,
         //borderColor: '#5388d0',
       }
     }
@@ -63,6 +63,7 @@ class InputTextComponent extends React.Component {
                                                                              color={this.props.colorIcon}/> : null}
           <TextInput placeholder={this.props.placeHolder}
                      label={this.props.label}
+                     type='outlined'
                      value={this.props.value}
                      onChangeText={this.props.onChangeText}
                      autocorrect={false}
@@ -72,8 +73,8 @@ class InputTextComponent extends React.Component {
                        this.props.iconLeft && this.props.iconLeft.length > 0 ? paddingLeftPlaceholder : null,
                        this.props.iconRight && this.props.iconRight.length > 0 ? paddingRightPlaceholder : null
                      ]}
-                     theme={{colors: {background: 'transparent', text: '#fff', placeholder: '#e5e5e5', primary: '#fff'}}}
-                     underlineColor='#fff'
+                     theme={{colors: {background: 'transparent', text: primary, placeholder: '#c3c3c3', primary: primary}}}
+                     underlineColor={primary}
                      secureTextEntry={this.state.secureInput}
                      onFocus={() => this.onFocus()}
                      onBlur={() => this.onBlur()}
