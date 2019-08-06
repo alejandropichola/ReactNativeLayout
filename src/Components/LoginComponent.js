@@ -97,7 +97,7 @@ class LoginComponent extends React.Component {
     const env = Config.env || 'local'
     const apiRoot = Config[env].apiRoot
     const url = apiRoot + Config.apiSrvAuth
-    console.warn(url)
+    Alert.alert('ruta', url)
     Keyboard.dismiss()
     if (this.validationForm()) {
       const params = {
