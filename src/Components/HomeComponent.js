@@ -1,28 +1,32 @@
 import React from 'react'
-import { Text, View, Image, Button, Alert } from 'react-native'
-import {onSignOut, isSignedIn } from '../Services/SESSION'
+import { View, Image, Button, Alert } from 'react-native'
+import { onSignOut, isSignedIn } from '../Services/SESSION'
+import { Text } from 'react-native-elements'
+import ChartComponent from './Common/ChartComponent'
 
 class HomeComponent extends React.Component {
   constructor (props) {
     super(props)
-    this.state={
+    this.state = {
       isLogin: 'no login',
       login: false
     }
   }
+
   componentDidMount () {
     this.auth()
     if (this.state.login) {
       Alert.alert('titulo', 'entra en la condicion')
-      this.setState({isLogin: 'is login'})
+      this.setState({ isLogin: 'is login' })
     }
   }
-  auth=()=> {
+
+  auth = () => {
     isSignedIn()
       .then((res) => {
         if (res) {
-          this.setState({login: true})
-          this.setState({isLogin: 'is login'})
+          this.setState({ login: true })
+          this.setState({ isLogin: 'is login' })
         }
       })
       .catch(err => {
@@ -35,7 +39,7 @@ class HomeComponent extends React.Component {
         isSignedIn()
           .then((res) => {
             if (!res) {
-              this.setState({isLogin: 'no login'})
+              this.setState({ isLogin: 'no login' })
               this.props.navigation.navigate('Auth')
             }
           })
@@ -45,15 +49,17 @@ class HomeComponent extends React.Component {
       })
       .catch()
   }
-  render() {
+
+  render () {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ paddingTop: 5, paddingLeft: 5, paddingRight: 5 }}>
         <Text>{this.state.isLogin}</Text>
 
-        <Text>Home Screen</Text>
-        <Button title='login' onPress={this.login}></Button>
+        <Text h3>Home Screen</Text>
+        <ChartComponent/>
       </View>
-    );
+    )
   }
 }
-export default HomeComponent;
+
+export default HomeComponent
